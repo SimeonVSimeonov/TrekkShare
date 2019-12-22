@@ -1,8 +1,9 @@
 ﻿namespace TrekkShare.Data.EntityConfiguration
 {
-    using Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+    using Models;
 
     public class WaterfallConfig : IEntityTypeConfiguration<Waterfall>
     {
@@ -20,11 +21,13 @@
                 .IsUnicode();
 
             builder.Property(w => w.Description)
-                .HasMaxLength(400);
+                .HasMaxLength(400)
+                .IsUnicode();
 
             builder.HasOne(w => w.River)
                 .WithMany(r => r.Waterfalls)
-                .HasForeignKey(w => w.RiverId);
+                .HasForeignKey(w => w.RiverId)
+                .OnDelete(DeleteBehavior.Restrict); ;
         }
     }
 }

@@ -12,7 +12,11 @@ namespace TrekkShare.Models
             this.Lakes = new HashSet<Lake>();
             this.Cottages = new HashSet<Cottage>();
             this.Peaks = new HashSet<Peak>();
-            this.Routes = new HashSet<Route>();
+            this.StartPointRoutes = new HashSet<Route>();
+            this.EndPointRoutes = new HashSet<Route>();
+            this.StartPointTrips = new HashSet<Trip>();
+            this.EndPointTrips = new HashSet<Trip>();
+            this.Dams = new HashSet<Dam>();
         }
 
         public int GeoLocationId { get; set; }
@@ -23,6 +27,10 @@ namespace TrekkShare.Models
         public ICollection<Lake> Lakes { get; set; }
         public ICollection<Cottage> Cottages { get; set; }
         public ICollection<Peak> Peaks { get; set; }
-        public ICollection<Route> Routes { get; set; }
+        public ICollection<Route> StartPointRoutes { get; set; }
+        public ICollection<Route> EndPointRoutes { get; set; }
+        public ICollection<Trip> StartPointTrips { get; set; }
+        public ICollection<Trip> EndPointTrips { get; set; }
+        public ICollection<Dam> Dams { get; set; }
     }
 }

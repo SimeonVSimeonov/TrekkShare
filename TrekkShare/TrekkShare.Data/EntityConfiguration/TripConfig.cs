@@ -1,14 +1,12 @@
 namespace TrekkShare.Data.EntityConfiguration
 {
-    using System;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    using TrekkShare.Models;
+    using Models;
 
     public class TripConfig : IEntityTypeConfiguration<Trip>
     {
-
         public void Configure(EntityTypeBuilder<Trip> builder)
         {
             builder.HasKey(x => x.TripId);
@@ -17,8 +15,17 @@ namespace TrekkShare.Data.EntityConfiguration
                 .WithMany(x => x.Trips)
                 .HasForeignKey(x => x.RouteId);
 
-            // TODO relation with Geo points and Cottage.
+            builder.HasOne(x => x.StartPoint)
+                .WithMany(x => x.StartPointTrips)
+                .HasForeignKey(x => x.StartPointId)
+                .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasOne(x => x.EndPoint)
+                .WithMany(x => x.EndPointTrips)
+                .HasForeignKey(x => x.EndPointId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // TODO relation with Geo points and Cottage.
         }
     }
 }

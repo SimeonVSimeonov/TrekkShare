@@ -2,6 +2,7 @@ namespace TrekkShare.Data.EntityConfiguration
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     using Models;
 
     public class CaveConfig : IEntityTypeConfiguration<Cave>
@@ -13,7 +14,6 @@ namespace TrekkShare.Data.EntityConfiguration
 
             builder
                 .Property(c => c.Name)
-                .HasColumnType("NVARCHAR(50)")
                 .HasMaxLength(50)
                 .IsRequired()
                 .IsUnicode();
